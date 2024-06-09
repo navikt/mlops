@@ -11,8 +11,8 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
       with:
-        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-        service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+        workload_identity_provider: '${{secrets.WIF_PROVIDER}}'
+        service_account: '${{secrets.SA_EMAIL}}'
 
     - id: 'laster-mappe'
       uses: 'google-github-actions/upload-cloud-storage@v2'
