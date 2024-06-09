@@ -20,23 +20,13 @@ jobs:
       with:
         node-version: 16
 
-  last-opp-til-Google-file-storage:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
-    steps:
-    - id: 'checkout'
-      uses: 'actions/checkout@v4'
-
-    - id: 'auth'
+    - name: 'auth'
       uses: 'google-github-actions/auth@v2'
       with:
         workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
         service_account: ${{ secrets.SA_EMAIL }}
 
-    - id: 'laster-mappe'
+    - name: 'laster-mappe'
       uses: 'google-github-actions/upload-cloud-storage@v2'
       with:
         path: '/treningsfiler/'
