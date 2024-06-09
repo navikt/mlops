@@ -1,3 +1,10 @@
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
 jobs:
   last-opp-til-Google-file-storage:
     permissions:
@@ -11,8 +18,8 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
       with:
-        workload_identity_provider: '${{secrets.WIF_PROVIDER}}'
-        service_account: '${{secrets.SA_EMAIL}}'
+        workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+        service_account: ${{ secrets.SA_EMAIL }}
 
     - id: 'laster-mappe'
       uses: 'google-github-actions/upload-cloud-storage@v2'
