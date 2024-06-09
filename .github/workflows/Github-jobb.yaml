@@ -6,6 +6,19 @@ on:
       - 'main'
 
 jobs:
+  deploy: ubuntu-latest
+  permissions:
+    contents: 'read'
+    id-token: 'write'
+  steps:
+  - name: Checkout
+    uses: actions/checkout@v3
+
+  - name: Setup Node
+    uses: actions/setup-node@v3
+    with:
+      node-version: 16
+      
   last-opp-til-Google-file-storage:
     permissions:
       contents: 'read'
