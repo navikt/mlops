@@ -21,6 +21,7 @@ jobs:
         node-version: 16
 
   last-opp-til-Google-file-storage:
+    runs-on: ubuntu-latest
     permissions:
       contents: 'read'
       id-token: 'write'
