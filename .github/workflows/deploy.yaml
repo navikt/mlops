@@ -32,3 +32,6 @@ jobs:
 
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
+    
+    - name: 'Last ned FERDIG TRENT model'
+      run: 'gcloud storage cp gs://tiltak-mlops/fine_tuned_lora /model/'
