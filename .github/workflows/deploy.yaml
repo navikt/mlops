@@ -34,4 +34,4 @@ jobs:
       run: 'gcloud info'
     
     - name: 'Last ned FERDIG TRENT model'
-      run: 'gcloud storage cp gs://tiltak-mlops/fine_tuned_lora /model/'
+      run: 'gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora /model/'
