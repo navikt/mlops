@@ -37,8 +37,5 @@ jobs:
       run: 'gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora model/'
 
     - name: 'bygg docker image fra lokal fil'
-      run: "gcloud builds commands run \
-  --project=team-tiltak-dev \
-  --tag=gcr.io/tiltak/tryggtekst \
-  --substitutions=SOURCE_URI=https://github.com/navikt/mlops.git,_VERSION=latest \
-  -- # Path to your Dockerfile (optional, defaults to Dockerfile)"
+      run: "gcloud builds submit --tag eu-docker.pkg.dev/team-tiltak-dev/mlops/tryggteks"
+
