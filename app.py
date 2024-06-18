@@ -3,8 +3,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel, PeftConfig
 import pandas as pd
 
-model = None
-tokenizer = None
+model = False
+tokenizer = False
 
 app = Flask(__name__)
 
@@ -12,8 +12,8 @@ app = Flask(__name__)
 def index():
     return "Velkommen! legg til følgende for å spørre meg /analyser/(din query)"
 
-def setupModel():
-    if(model is None or tokenizer is None):
+def setupModel(model = False, tokenizer = False):
+    if(not model or not tokenizer):
         base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
         lora_path = './fine_tuned_lora'
 
@@ -30,7 +30,7 @@ def setupModel():
 @app.route("/analyser/<tekst>")
 def analyserTekst(tekst):
     print("INIT MODEL")
-    setupModel()
+    setupModel(model, tokenizer)
     print("SKAL ANALYSERE TEKST " + str(tekst))
     inputs = tokenizer(tekst, return_tensors="pt")
     # Generate text
