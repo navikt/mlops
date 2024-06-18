@@ -2,7 +2,7 @@ from flask import Flask
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-model_path = './fine_tuned_lora'
+model_path = '/app/fine_tuned_lora'
 model = AutoModelForCausalLM.from_pretrained(model_path)
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 # Set the pad_token to be the same as the eos_token
