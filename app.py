@@ -1,6 +1,5 @@
 from flask import Flask
 from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
 from peft import PeftModel, PeftConfig
 import pandas as pd
 
@@ -16,7 +15,6 @@ tokenizer = AutoTokenizer.from_pretrained(lora_path)
 # Set the pad_token to be the same as the eos_token
 tokenizer.pad_token = tokenizer.eos_token
 model.config.use_cache = False
-torch.cuda.empty_cache()
 app = Flask(__name__)
 
 
