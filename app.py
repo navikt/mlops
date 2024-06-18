@@ -3,7 +3,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel, PeftConfig
 import pandas as pd
 
-base_model_path = './model_llama_2'
+base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
 lora_path = './fine_tuned_lora'
 
 base_model = AutoModelForCausalLM.from_pretrained(base_model_path).to("cpu")
