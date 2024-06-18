@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world(tekst):
-    return "Velkommen! legg til følgende for å spørre meg /(din query her)"
+    return "Velkommen! legg til følgende for å spørre meg /(din query)"
 
 @app.route("/<tekst>")
 def hello_world(tekst):
