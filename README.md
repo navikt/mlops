@@ -17,5 +17,7 @@ WIF : projects/368669329223/locations/global/workloadIdentityPools/github-action
 https://stackoverflow.com/questions/75840164/permission-artifactregistry-repositories-uploadartifacts-denied-on-resource-usin
 gcloud auth login
 gcloud auth configure-docker europe-docker.pkg.dev
+ 
+
 
 https://github.com/navikt/knada-images/blob/main/.github/workflows/airflow.yaml
