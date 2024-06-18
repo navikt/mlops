@@ -1,8 +1,8 @@
 flask
 transformers
 torch
-bitsandbytes
-loralib
+#bitsandbytes
+#loralib
 peft
 pandas
-trl
+#trl
