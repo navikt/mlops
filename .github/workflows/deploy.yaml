@@ -51,5 +51,8 @@ jobs:
         file: Dockerfile
         push: true
         tags: europe-docker.pkg.dev/team-tiltak-dev-2137/tryggtekst/app:${{ env.TAG }}
+
+#    - name: "deploy app til cloud run"
+#      run: "gcloud run deploy <service-name> --image=<image-uri> --region=europe --allow-unauthenticated"
             
 
