@@ -35,7 +35,7 @@ jobs:
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
     - name: 'Last ned FERDIG TRENT model fra cloud bucket'
-      run: 'gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora ./model'
+      run: 'gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora ./app/model/'
 
     - uses: docker/login-action@v3
       name: Login to Google Artifact Registry
