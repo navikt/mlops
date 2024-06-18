@@ -1,6 +1,6 @@
 flask
 transformers
-#torch
+torch
 #bitsandbytes
 #loralib
 peft
