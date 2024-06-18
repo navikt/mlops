@@ -4,4 +4,5 @@ torch
 bitsandbytes
 loralib
 peft
+pandas
 trl
