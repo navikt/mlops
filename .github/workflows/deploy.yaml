@@ -34,7 +34,11 @@ jobs:
         
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
-    - name: 'Last ned FERDIG TRENT model fra cloud bucket'
+      
+    - name: 'Last ned BASED model fra cloud bucket'
+      run: 'gcloud storage cp -r gs://tiltak-mlops/model_llama_2 .'
+
+    - name: 'Last ned LORA fra cloud bucket'
       run: 'gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora .'
 
     - name: Print file list
