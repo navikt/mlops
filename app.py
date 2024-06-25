@@ -37,15 +37,23 @@ print("DONE DOWNLOADING MODEL!!!")
 
 @app.route("/predict", methods=["POST"])
 def predict():
-  # Get the input data from the request body (assuming JSON format)
+  # Get the JSON data from the request body
   data = request.get_json()
+
+  # Check if data is present
   if not data:
       return jsonify({'error': 'Missing data in request'}), 400
 
-  # Extract the input text from the request data (modify based on your input format)
-  input_text = data.get("text")  # Adjust key name based on your data structure
-  if not input_text:
-      return jsonify({'error': 'Missing "text" field in request data'}), 400
+  # Access the "instances" list
+  instances = data.get("instances")
+
+  # Check if "instances" list exists
+  if not instances:
+      return jsonify({'error': 'Missing "instances" list in request data'}), 400
+
+  # Get only the first instance
+  first_instance = instances[0]
+  input_text = first_instance.get("text")
     
   print("SKAL ANALYSERE TEKST " + str(input_text))    
   inputs = tokenizer(input_text, return_tensors="pt")
