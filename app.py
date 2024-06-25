@@ -11,6 +11,9 @@ app = Flask(__name__)
 def index():
     return "Velkommen! legg til følgende for å spørre meg /analyser/(din query)"
 
+@app.route("/health")
+def health():
+    return {"health":"OK"}, 200
 
 @app.route("/predict", methods=["POST"])
 def predict():
