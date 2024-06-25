@@ -5,7 +5,7 @@ principalSet://iam.googleapis.com/projects/368669329223/locations/global/workloa
 
 POOL ID = github-actions-cloud-run
 PROVIDER-ID = github
-PROJECT= 368669329223
+PROJECT-ID= 368669329223
 
 serivce account: team-tiltak-service-account@team-tiltak-dev-2137.iam.gserviceaccount.com
 
