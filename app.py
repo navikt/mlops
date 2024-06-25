@@ -38,7 +38,7 @@ def predict():
   input_text = first_instance.get("text")
   print("INIT MODEL")
   base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
-  lora_path = './fine_tuned_lora'
+  lora_path = 'fine_tuned_lora/'
   base_model = AutoModelForCausalLM.from_pretrained(base_model_path).to("cpu")
   peft_config = PeftConfig.from_pretrained(lora_path)
   model = PeftModel.from_pretrained(base_model, lora_path).to("cpu")
@@ -63,4 +63,4 @@ def predict():
   return jsonify({"generated_text": generated_text})
  
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port="8080", timeout=7200)#to timer timeout
+    app.run(debug=True, host="0.0.0.0", port="8080")#to timer timeout
