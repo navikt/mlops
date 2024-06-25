@@ -63,4 +63,4 @@ def predict():
   return jsonify({"generated_text": generated_text})
  
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port="8080")
+    app.run(debug=True, host="0.0.0.0", port="8080", timeout=7200)#to timer timeout
