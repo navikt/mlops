@@ -6,7 +6,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 
-#COPY lora/ .
+COPY /lora/fine_tuned_lora ./lora
 COPY . .
 
 CMD ["python", "app.py"]
