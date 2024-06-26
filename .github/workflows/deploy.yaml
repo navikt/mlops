@@ -44,9 +44,9 @@ jobs:
 
     - name: 'Last ned LORA fra cloud bucket'
       run: |
-          mkdir fine_tuned_lora
-          gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora fine_tuned_lora/
-          mv fine_tuned_lora .
+          mkdir fine_tuned_model
+          gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora fine_tuned_model/
+          mv fine_tuned_model .
 
     - name: Print file list 2
       run: |
