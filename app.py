@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
-from transformers import AutoTokenizer, AutoModelForCausalLM
+
+from transformers import AutoTokenizer #AutoModelForCausalLM
+from optimum.nvidia import AutoModelForCausalLM
 from peft import PeftModel, PeftConfig
 
 import torch
@@ -19,7 +21,13 @@ def health():
 print("INIT MODEL")
 base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
 lora_path = './fine_tuned_lora/'
-base_model = AutoModelForCausalLM.from_pretrained(base_model_path).to("cpu")
+#base_model = AutoModelForCausalLM.from_pretrained(base_model_path).to("cpu")
+base_model = AutoModelForCausalLM.from_pretrained(
+  base_model_path, use_fp8=True, 
+  max_prompt_length=1024,
+  max_output_length=2048, # Must be at least size of max_prompt_length + max_new_tokens,
+  max_batch_size=8,
+)
 peft_config = PeftConfig.from_pretrained(lora_path)
 model = PeftModel.from_pretrained(base_model, lora_path).to("cpu")
 model = model.merge_and_unload()
