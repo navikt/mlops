@@ -71,9 +71,9 @@ jobs:
             --region europe-west4 \
             --display-name "tryggtekst" \
             --container-image-uri "europe-docker.pkg.dev/team-tiltak-dev-2137/tryggtekst/app:${{ env.TAG }}" \
-            --args="--port=8080" \
-            --health-route="/health" \
-            --predict-route="/predict"
+            --container-args="--port=8080" \
+            --container-health-route="/health" \
+            --container-predict-route="/predict"
 
           MODEL_ID=$(gcloud ai models list --region europe-west4 --filter="displayName=tryggtekst" --format="value(name)")
 
