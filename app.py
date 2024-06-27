@@ -18,7 +18,7 @@ def index():
 def health():
     return {"health":"OK"}, 200
 
-print("INIT MODEL")
+print("skal starte å laste modellen.")
 base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
 lora_path = './fine_tuned_lora/'
 #base_model = AutoModelForCausalLM.from_pretrained(base_model_path).to("cpu")
@@ -36,7 +36,7 @@ tokenizer = AutoTokenizer.from_pretrained(lora_path)
 # Set the pad_token to be the same as the eos_token
 #tokenizer.pad_token = tokenizer.eos_token
 #model.config.use_cache = False
-print("FERDIG LASTING AV MODEL!!!")
+print("MODEL er FERDIG LASTet!!!")
 
 # {"instances":[{"text":"hva heter Norges hovedstad?"}]}
 @app.route("/predict", methods=["POST"])
