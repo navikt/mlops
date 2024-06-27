@@ -1,9 +1,9 @@
 flask
 transformers
-#torch
+torch
 #bitsandbytes
 #loralib
 peft
 pandas
-optimum-nvidia
+optimum
 #trl
