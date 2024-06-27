@@ -29,13 +29,13 @@ base_model = AutoModelForCausalLM.from_pretrained(
   max_batch_size=8,
 )
 peft_config = PeftConfig.from_pretrained(lora_path)
-model = PeftModel.from_pretrained(base_model, lora_path).to("cpu")
+model = PeftModel.from_pretrained(base_model, lora_path)
 model = model.merge_and_unload()
 tokenizer = AutoTokenizer.from_pretrained(lora_path)
 
 # Set the pad_token to be the same as the eos_token
-tokenizer.pad_token = tokenizer.eos_token
-model.config.use_cache = False
+#tokenizer.pad_token = tokenizer.eos_token
+#model.config.use_cache = False
 print("FERDIG LASTING AV MODEL!!!")
 
 # {"instances":[{"text":"hva heter Norges hovedstad?"}]}
