@@ -16,6 +16,20 @@ def index():
 def health():
     return {"health":"OK"}, 200
 
+print("INIT MODEL")
+base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
+lora_path = './fine_tuned_lora/'
+base_model = AutoModelForCausalLM.from_pretrained(base_model_path).to("cpu")
+peft_config = PeftConfig.from_pretrained(lora_path)
+model = PeftModel.from_pretrained(base_model, lora_path).to("cpu")
+model = model.merge_and_unload()
+tokenizer = AutoTokenizer.from_pretrained(lora_path)
+
+# Set the pad_token to be the same as the eos_token
+tokenizer.pad_token = tokenizer.eos_token
+model.config.use_cache = False
+print("FERDIG LASTING AV MODEL!!!")
+
 # {"instances":[{"text":"hva heter Norges hovedstad?"}]}
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -36,19 +50,7 @@ def predict():
   # Get only the first instance
   first_instance = instances[0]
   input_text = first_instance.get("text")
-  print("INIT MODEL")
-  base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
-  lora_path = './fine_tuned_lora/'
-  base_model = AutoModelForCausalLM.from_pretrained(base_model_path).to("cpu")
-  peft_config = PeftConfig.from_pretrained(lora_path)
-  model = PeftModel.from_pretrained(base_model, lora_path).to("cpu")
-  model = model.merge_and_unload()
-  tokenizer = AutoTokenizer.from_pretrained(lora_path)
-
-  # Set the pad_token to be the same as the eos_token
-  tokenizer.pad_token = tokenizer.eos_token
-  model.config.use_cache = False
-  print("DONE DOWNLOADING MODEL!!!")
+  
     
   print("SKAL ANALYSERE TEKST " + str(input_text))    
   inputs = tokenizer(input_text, return_tensors="pt")
@@ -59,8 +61,8 @@ def predict():
     print("DECODER TEKST")
     generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     print("FERDIG...")
-    return jsonify({"generated_text": generated_text})  
-  return jsonify({"generated_text": generated_text})
+    return jsonify({"svar": generated_text})  
+  return jsonify({"svar": generated_text})
  
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port="8080")#to timer timeout
+    app.run(debug=True, host="0.0.0.0", port="8080")
