@@ -43,9 +43,7 @@ jobs:
 #         find . -type d -print | sort
 
     - name: 'Last ned LORA fra cloud bucket'
-      run: |
-          mkdir fine_tuned_model
-          gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora fine_tuned_model/
+      run: gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora .
 
     - name: Print file list 2
       run: |
@@ -61,8 +59,9 @@ jobs:
     
     - run: echo "TAG=$(git log -1 --pretty=%ad --date=format:%Y-%m-%d)-$(git log --pretty=format:'%h' -n 1)" >> $GITHUB_ENV
 
-    - uses: docker/build-push-action@v5
+    - uses: docker/build-push-action@v6
       with:
+        context: .
         file: Dockerfile
         push: true
         tags: europe-docker.pkg.dev/team-tiltak-dev-2137/tryggtekst/app:${{ env.TAG }}
