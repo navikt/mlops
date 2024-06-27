@@ -65,25 +65,25 @@ jobs:
         push: true
         tags: europe-docker.pkg.dev/team-tiltak-dev-2137/tryggtekst/app:${{ env.TAG }}
 
-#  - name: Deploy to Vertex AI
-#       run: |
-#          gcloud ai models upload \
-#            --region ${{ secrets.GCP_REGION }} \
-#            --display-name "your-model-name" \
-#            --container-image-uri "gcr.io/${{ secrets.GCP_PROJECT_ID }}/your-model-image:latest" \
-#            --args="--port=8080" \
-#            --health-route="/health" \
-#            --predict-route="/predict"
+    - name: Deploy to Vertex AI
+       run: |
+          gcloud ai models upload \
+            --region europe-west4 \
+            --display-name "tryggtekst" \
+            --container-image-uri "europe-docker.pkg.dev/team-tiltak-dev-2137/tryggtekst/app:${{ env.TAG }}" \
+            --args="--port=8080" \
+            --health-route="/health" \
+            --predict-route="/predict"
 
-#         MODEL_ID=$(gcloud ai models list --region ${{ secrets.GCP_REGION }} --filter="displayName=your-model-name" --format="value(name)")
-#
-#          gcloud ai endpoints create --region ${{ secrets.GCP_REGION }} --display-name "your-endpoint-name"
+          MODEL_ID=$(gcloud ai models list --region europe-west4 --filter="displayName=tryggtekst" --format="value(name)")
 
-#          ENDPOINT_ID=$(gcloud ai endpoints list --region ${{ secrets.GCP_REGION }} --filter="displayName=your-endpoint-name" --format="value(name)")
+          gcloud ai endpoints create --region europe-west4 --display-name "tryggtekst"
 
-#          gcloud ai endpoints deploy-model $ENDPOINT_ID \
-#            --region ${{ secrets.GCP_REGION }} \
-#            --model $MODEL_ID \
-#            --display-name "your-deployed-model" \
-#            --traffic-split=0=100      
+          ENDPOINT_ID=$(gcloud ai endpoints list --region europe-west4 --filter="displayName=tryggtekst" --format="value(name)")
+
+          gcloud ai endpoints deploy-model $ENDPOINT_ID \
+            --region europe-west4 \
+            --model $MODEL_ID \
+            --display-name "tryggtekst" \
+            --traffic-split=0=100      
 
