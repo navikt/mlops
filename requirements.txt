@@ -5,5 +5,5 @@ torch
 #loralib
 peft
 pandas
-optimum
+#optimum (bruker docker huggingface/optimum-nvidia  som allerede har optimum installert!)
 #trl
