@@ -56,8 +56,8 @@ local_destination = "fine_tuned_lora"
 
 #download_folder(bucket_name, folder_path, local_destination)
 print("skal starte å laste ---- RUTER - HOVED ---- modellen.")
-base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
-lora_path = './fine_tuned_lora/'
+model_name = 'RuterNorway/Llama-2-7b-chat-norwegian'
+adapters_name = './fine_tuned_lora/'
 m = AutoModelForCausalLM.from_pretrained(
     model_name,
     #load_in_4bit=True,
@@ -101,7 +101,7 @@ def predict():
     print("JOBBER")
     outputs = m.generate(inputs.input_ids,max_length=300)
     print("DECODER TEKST")
-    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    generated_text = tok.decode(outputs[0], skip_special_tokens=True)
     print("FERDIG...")
     return jsonify({"svar": generated_text}) 
  
