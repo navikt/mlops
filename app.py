@@ -54,7 +54,7 @@ bucket_name = "tiltak-mlops"
 folder_path = "fine_tuned_lora"
 local_destination = "fine_tuned_lora"
 
-download_folder(bucket_name, folder_path, local_destination)
+#download_folder(bucket_name, folder_path, local_destination)
 print("skal starte å laste ---- RUTER - HOVED ---- modellen.")
 base_model_path = 'RuterNorway/Llama-2-7b-chat-norwegian'
 lora_path = './fine_tuned_lora/'
