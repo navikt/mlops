@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 import torch
 from peft import PeftModel    
 from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaTokenizer, StoppingCriteria, StoppingCriteriaList, TextIteratorStreamer
-from google.cloud import storage
+#from google.cloud import storage
 import os
 import torch
 import pandas as pd
