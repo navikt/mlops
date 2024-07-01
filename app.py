@@ -62,7 +62,7 @@ m = AutoModelForCausalLM.from_pretrained(
     model_name,
     #load_in_4bit=True,
     torch_dtype=torch.bfloat16,
-    device_map="auto"
+    device_map="auto" #fjern denne når du skal kjøre lokalt
 )
 m = PeftModel.from_pretrained(m, adapters_name)
 m = m.merge_and_unload()
@@ -103,7 +103,7 @@ def predict():
     print("DECODER TEKST")
     generated_text = tok.decode(outputs[0], skip_special_tokens=True)
     print("FERDIG...")
-    return jsonify({"svar": generated_text}) 
+  return jsonify({"svar": generated_text}) 
  
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port="8080")
