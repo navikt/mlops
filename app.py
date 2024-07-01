@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 
 import torch
 from peft import PeftModel    
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaTokenizer, StoppingCriteria, StoppingCriteriaList, TextIteratorStreamer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 #from google.cloud import storage
 import os
 import torch
@@ -66,7 +66,7 @@ m = AutoModelForCausalLM.from_pretrained(
 )
 m = PeftModel.from_pretrained(m, adapters_name)
 m = m.merge_and_unload()
-tok = LlamaTokenizer.from_pretrained(model_name)
+tok = AutoTokenizer.from_pretrained(model_name)
 tok.bos_token_id = 1
 
 stop_token_ids = [0]
