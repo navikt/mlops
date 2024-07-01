@@ -103,7 +103,7 @@ def predict():
     print("DECODER TEKST")
     generated_text = tok.decode(outputs[0], skip_special_tokens=True)
     print("FERDIG...")
-  return generated_text
+    return jsonify({"predictions": [generated_text],"deployModelId":""})
  
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port="8080")
