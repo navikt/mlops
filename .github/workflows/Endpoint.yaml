@@ -48,5 +48,5 @@ jobs:
           echo $MODEL_ID
           echo "skal deploye endpoint"
           
-          gcloud ai endpoints deploy-model $ENDPOINT_ID --region europe-west4 --machine-type a2-highgpu-1g --model $MODEL_ID --display-name "tryggtekst" 
+          gcloud ai endpoints deploy-model $ENDPOINT_ID --region europe-west4 --machine-type a2-highgpu-1g --model $MODEL_ID --display-name "tryggtekst" --accelerator==type=nvidia-tesla-a100,count=1
 
