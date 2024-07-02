@@ -80,7 +80,8 @@ jobs:
 
           gcloud ai endpoints create --region europe-west4 --display-name "tryggtekst"
 
-          ENDPOINT_ID=$(gcloud ai endpoints list --region=europe-west4 --format=json | jq -r 'sort_by(.createTime) | last(.[]).name | split("/")[-1]')
+          ENDPOINT_ID=$(gcloud ai endpoints list --region europe-west4 --format="value(name)" | cut -d'/' -f9)
+ 
            
           gcloud ai endpoints deploy-model $ENDPOINT_ID \
             --region europe-west4 \
