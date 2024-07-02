@@ -45,11 +45,8 @@ jobs:
           ENDPOINT_ID=$(gcloud ai endpoints list --region=europe-west4 --format="value(name)" --sort-by=~create_time --limit=1)
           echo "printer endpoint id now"
           echo $ENDPOINT_ID
+          echo $MODEL_ID
           echo "skal deploye endpoint"
           
-          gcloud ai endpoints deploy-model $ENDPOINT_ID \
-            --region=europe-west4 \
-            --machine-type=a2-highgpu-1g \
-            --model=$MODEL_ID \
-            --display-name="tryggtekst" 
+          gcloud ai endpoints deploy-model $ENDPOINT_ID --region europe-west4 --machine-type a2-highgpu-1g --model $MODEL_ID --display-name "tryggtekst" 
 
