@@ -1,5 +1,6 @@
 ### mlops
 
+Team tiltak tryggtekst MLOps av en Llama 2 model
 
 principalSet://iam.googleapis.com/projects/368669329223/locations/global/workloadIdentityPools/github-actions-cloud-run/attribute.repository/navikt/mlops
 
