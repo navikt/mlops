@@ -85,6 +85,5 @@ jobs:
           gcloud ai endpoints deploy-model $ENDPOINT_ID \
             --region europe-west4 \
             --model $MODEL_ID \
-            --display-name "tryggtekst" \
-            --traffic-split=0=100      
+            --display-name "tryggtekst" 
 
