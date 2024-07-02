@@ -37,7 +37,7 @@ jobs:
 
     - name: Deploy ENDPOINT to Vertex AI
       run: | 
-          MODEL_ID=$(gcloud ai models list --region europe-west4 --filter="displayName=tryggtekst" --format="value(name)")
+          MODEL_ID=$(gcloud ai models list --region europe-west4 --filter="displayName=tryggtekst" --format="value(name)" --sort-by=~create_time --limit=1)
 
           gcloud ai endpoints create --region europe-west4 --display-name "tryggtekst"
 
