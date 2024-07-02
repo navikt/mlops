@@ -81,9 +81,10 @@ jobs:
           gcloud ai endpoints create --region europe-west4 --display-name "tryggtekst"
 
           
-          ENDPOINT_ID=$(gcloud ai endpoints list --region=europe-west4 --filter="order by create_time desc" | grep "^[a-z-]\+:" | head -n 1)
-
-          echo "######ENDPOINT_ID = $ENDPOINT_ID"
+          ENDPOINT_ID=$(ENDPOINT_ID=$(gcloud ai endpoints list --region=europe-west4 --format="value(name)" --sort-by=~create_time --limit=1)
+          echo "printer endpoint id now"
+          $ENDPOINT_ID
+          echo "skal deploye endpoint"
 
  
            
