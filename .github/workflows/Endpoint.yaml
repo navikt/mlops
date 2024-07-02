@@ -35,13 +35,7 @@ jobs:
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
 
-    - uses: docker/build-push-action@v6
-      with:
-        context: .
-        push: true
-        tags: europe-docker.pkg.dev/team-tiltak-dev-2137/tryggtekst/app:${{ env.TAG }}
-
-    - name: Deploy to Vertex AI
+    - name: Deploy ENDPOINT to Vertex AI
       run: | 
           MODEL_ID=$(gcloud ai models list --region europe-west4 --filter="displayName=tryggtekst" --format="value(name)")
 
