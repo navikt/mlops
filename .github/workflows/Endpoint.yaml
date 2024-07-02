@@ -48,5 +48,5 @@ jobs:
           echo $MODEL_ID
           echo "skal deploye endpoint"
           
-          gcloud ai endpoints deploy-model $ENDPOINT_ID --region europe-west4 --machine-type a2-highgpu-1g --model $MODEL_ID --display-name "tryggtekst" --service-account team-tiltak-service-account@team-tiltak-dev-2137.iam.gserviceaccount.com --project 368669329223 --accelerator type=nvidia-tesla-a100,count=1
+          gcloud ai endpoints deploy-model $ENDPOINT_ID --region europe-west4 --machine-type a2-highgpu-1g --model $MODEL_ID --display-name "tryggtekst" --service-account team-tiltak-service-account@team-tiltak-dev-2137.iam.gserviceaccount.com --PROJECT-ID 368669329223 --accelerator type=nvidia-tesla-a100,count=1
 
