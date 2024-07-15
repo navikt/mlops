@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy: 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-16-cores
     environment: default
     permissions:
       contents: 'read'
@@ -45,6 +45,9 @@ jobs:
 
     - name: 'Last ned LORA fra cloud bucket'
       run: gcloud storage cp -r gs://tiltak-mlops/fine_tuned_lora .
+
+    - name: 'Last ned LORA fra cloud bucket'
+      run: gcloud storage cp -r gs://tiltak-mlops/model_llama_2 .
 
     - name: Print file list 2
       run: find . -type d -print | sort

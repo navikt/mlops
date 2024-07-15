@@ -56,7 +56,7 @@ local_destination = "fine_tuned_lora"
 
 #download_folder(bucket_name, folder_path, local_destination)
 print("skal starte å laste ---- RUTER - HOVED ---- modellen.")
-model_name = 'RuterNorway/Llama-2-7b-chat-norwegian'
+model_name = './model_llama_2'
 adapters_name = './fine_tuned_lora/'
 m = AutoModelForCausalLM.from_pretrained(
     model_name,
