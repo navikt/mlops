@@ -49,13 +49,13 @@ def download_folder(bucket_name, folder_path, local_destination):
         download_blob(bucket_name, blob.name, local_file_path)
 
 
-print("SKAL LASTE NED --- LORA --- fra bucket")
+#print("SKAL LASTE NED --- LORA --- fra bucket")
 bucket_name = "tiltak-mlops"
 folder_path = "fine_tuned_lora"
 local_destination = "fine_tuned_lora"
 
 #download_folder(bucket_name, folder_path, local_destination)
-print("skal starte å laste ---- RUTER - HOVED ---- modellen.")
+print("#### Model LOADING")
 model_name = './model_llama_2/'
 adapters_name = './fine_tuned_lora/'
 m = AutoModelForCausalLM.from_pretrained(
@@ -70,7 +70,7 @@ tok = AutoTokenizer.from_pretrained(model_name)
 tok.bos_token_id = 1
 
 stop_token_ids = [0]
-print("MODEL er FERDIG LASTet!!!")
+print("#### MODEL READY")
 
 # {"instances":[{"text":"hva heter Norges hovedstad?"}]}
 @app.route("/predict", methods=["POST"])
@@ -94,7 +94,7 @@ def predict():
   input_text = first_instance.get("text")
   
     
-  print("SKAL ANALYSERE TEKST " + str(input_text))    
+  print("#### TEXT INPUT " + str(input_text))    
   inputs = tok("### instruct: You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Answers in the language you are written to. You are trained to answer relative to the principles of sensitive personal information which are: \nHelseopplysninger og annen informasjon som sier noe om en persons helsetilstand.\nRasemessig eller etnisk opprinnelse,\nPolitisk oppfatning, religion, filosofisk overbevisning eller fagforeningsmedlemskap,\nGenetiske opplysninger og biometriske opplysninger med det formål å entydig identifisere en fysisk person\nOpplysninger om en fysisk persons seksuelle forhold eller seksuelle orientering.\nSome placeholders will be used in the texts: <Name> is a placeholder for name. <Sted> is placeholder for origin. <Religion> for religions.\n\n\nHvilken type av sensitiv personlig informasjon innholder denne teksten?\n ### Input: " + input_text + " \n ### output: ", return_tensors="pt")
   # Generate text
   with torch.no_grad():
@@ -106,6 +106,6 @@ def predict():
     return jsonify({"predictions": [generated_text],"deployModelId":""})
  
 if __name__ == "__main__":
-    #my_port = os.getenv('AIP_HTTP_PORT')
-
+    my_port = os.getenv('AIP_HTTP_PORT')
+    print("#### LISTENING TO PORT: "+ str(my_port))
     app.run(debug=True, use_reloader=False, host="0.0.0.0", port="8080")
