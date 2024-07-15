@@ -75,8 +75,6 @@ jobs:
             --region europe-west4 \
             --display-name "tryggtekst" \
             --container-image-uri "europe-docker.pkg.dev/team-tiltak-dev-2137/tryggtekst/app:${{ env.TAG }}" \
-            --container-args="--port=8080" \
-            --container-grpc-ports="8080"  \
             --container-health-route="/health" \
             --container-predict-route="/predict"
 
