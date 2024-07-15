@@ -106,4 +106,6 @@ def predict():
     return jsonify({"predictions": [generated_text],"deployModelId":""})
  
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port="8080")
+    my_port = os.getenv('AIP_HTTP_PORT')
+
+    app.run(debug=True, host="0.0.0.0", port=my_port)
