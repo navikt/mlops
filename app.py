@@ -108,4 +108,4 @@ def predict():
 if __name__ == "__main__":
     my_port = os.getenv('AIP_HTTP_PORT')
 
-    app.run(debug=True, host="0.0.0.0", port=my_port)
+    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=my_port)
