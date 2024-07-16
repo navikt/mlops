@@ -12,3 +12,10 @@ service account: team-tiltak-service-account@team-tiltak-dev-2137.iam.gserviceac
 
 WIF-workload_identity_provider: projects/{project}/locations/global/workloadIdentityPools/{pool-id}/providers/{provider-id}
 WIF : projects/368669329223/locations/global/workloadIdentityPools/github-actions-cloud-run/providers/github
+
+projectId = '368669329223';
+region = 'europe-west4';
+pipelineId = 'mlops7-20240615020430';
+pipelineRoot = 'gs://your_bucket/your_folder';
+pipelineRoot = "gs://test-repo/mlops7"
+
