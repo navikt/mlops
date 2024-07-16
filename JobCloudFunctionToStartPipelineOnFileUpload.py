@@ -21,31 +21,40 @@ def startTreningAvTryggtekst(cloud_event):
     event_id = cloud_event["id"]
     event_type = cloud_event["type"]
 
-    #bucket = data["bucket"]
-    #name = data["name"]
-    #metageneration = data["metageneration"]
-    #timeCreated = data["timeCreated"]
-    #updated = data["updated"]
+    bucket = data["bucket"]
+    name = data["name"]
+    if(bucket and name):
+        print(f"Bucket: {bucket}")
+        print(f"File: {name}")
+        
+        search_text = "data".lower()
 
-    #print(f"Event ID: {event_id}")
-    #print(f"Event type: {event_type}")
-    #print(f"Bucket: {bucket}")
-    #print(f"File: {name}")
-    #print(f"Metageneration: {metageneration}")
-    #print(f"Created: {timeCreated}")
-    #print(f"Updated: {updated}")
-    # Create a PipelineJob using the compiled pipeline from pipeline_spec_uri
-    aiplatform.init(
-        project=PROJECT_ID,
-        location=REGION,
-    )
-    job = aiplatform.PipelineJob(
-        display_name='startTreningAvTryggtekst',
-        template_path="gs://tiltak-mlops/pipeline-template/mlops_pipeline.json",
-        #pipeline_root=PIPELINE_ROOT,
-        enable_caching=False
-        #parameter_values=parameter_values
-    )
+        if search_text in name:
+            print("Text found!")
+            #metageneration = data["metageneration"]
+            #timeCreated = data["timeCreated"]
+            #updated = data["updated"]
 
-    # Submit the PipelineJob
-    job.submit()
+            #print(f"Event ID: {event_id}")
+            #print(f"Event type: {event_type}")
+
+            #print(f"Metageneration: {metageneration}")
+            #print(f"Created: {timeCreated}")
+            #print(f"Updated: {updated}")
+            # Create a PipelineJob using the compiled pipeline from pipeline_spec_uri
+            aiplatform.init(
+                project=PROJECT_ID,
+                location=REGION,
+            )
+            job = aiplatform.PipelineJob(
+                display_name='startTreningAvTryggtekst',
+                template_path="gs://tiltak-mlops/pipeline-template/mlops_pipeline.json",
+                #pipeline_root=PIPELINE_ROOT,
+                enable_caching=False
+                #parameter_values=parameter_values
+            )
+
+            # Submit the PipelineJob
+            job.submit()
+    else:
+        print("Nothing todo here")
