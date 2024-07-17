@@ -6,7 +6,6 @@ on:
 jobs:
   endpoint-create: 
     runs-on: ubuntu-latest-16-cores
-    timeout-minutes: 600
     environment: default
     permissions:
       contents: 'read'
